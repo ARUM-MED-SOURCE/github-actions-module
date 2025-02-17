@@ -17,92 +17,12 @@ jobs:
   create-repository:
     runs-on: ubuntu-latest
     steps:
-      # # GitHub CLI 인증
-      # - name: Login to GitHub CLI
-      #   run: |
-      #     echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+      # GitHub CLI 인증
+      - name: Login to GitHub CLI
+        run: |
+          echo "${{ secrets.PERSONAL_ACCESS_TOKEN }}" | gh auth login --with-token
 
-      # # 저장소 생성 단계
-      # - name: Create repository
-      #   run: |
-      #     gh repo create ARUM-MED-SOURCE/${{ inputs.repository_name }}-${{ inputs.repository_suffix }} --public --add-readme
-
-      # 추가 단계
+      # 저장소 생성 단계
       - name: Create repository
-        uses: actions/create-repository@v1
-        with:
-          name: ARUM-MED-SOURCE/${{ inputs.repository_name }}-${{ inputs.repository_suffix }}
-          description: "This is a test repository"
-          visibility: public
-          auto-init: true 
-          gitignore: "node_modules"
-          license: "MIT"
-          readme: "README.md"
-          template: "actions/create-repository"
-          template_owner: "actions"
-          template_repo: "create-repository"
-          template_branch: "main"
-          template_path: ".github/workflows/create-repository.yaml"
-          template_ref: "v1"
-          template_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          template_overwrite: true
-          template_branch_create: true
-
-          # Optional parameters
-          allow_squash_merge: true
-          allow_merge_commit: true
-          allow_rebase_merge: true
-          allow_auto_merge: true
-          allow_rebase_update: true
-
-          # Additional options
-          delete_branch: true
-          delete_branch_after_merge: true
-          delete_branch_after_merge_days: 7
-          delete_branch_after_merge_days_type: relative
-          
-          # Team access
-          team_access: "maintain"
-          team_name: "maintainers"
-          team_privacy: "closed"
-          team_permission: "pull"
-          
-          # Branch protection
-          branch_protection: true
-          required_status_checks: "checks"
-          required_status_checks_strict: true
-          required_pull_request_reviews: true
-          required_pull_request_reviews_dismissal_threshold: 1
-          
-          # Webhooks
-          webhook_url: "https://example.com/webhook"
-          webhook_secret: "secret"
-          webhook_content_type: "json"
-          webhook_insecure_ssl: "0"
-          webhook_token: "token"
-
-          # Issue templates
-          issue_template: "ISSUE_TEMPLATE.md"
-          issue_template_path: ".github/ISSUE_TEMPLATE.md"
-          issue_template_overwrite: true
-          issue_template_branch_create: true
-
-          # Pull request templates
-          pull_request_template: "PULL_REQUEST_TEMPLATE.md"
-          pull_request_template_path: ".github/PULL_REQUEST_TEMPLATE.md"
-          pull_request_template_overwrite: true
-          pull_request_template_branch_create: true
-
-          # Project boards
-          project_board: true
-          project_board_name: "Project Board"
-          project_board_privacy: "closed"
-          project_board_template: "Project Board Template"
-
-          # Dependabot
-          dependabot: true
-          dependabot_branch_protection: true
-          dependabot_branch_name: "dependabot"
-          dependabot_branch_protection_strict: true
-
-      
+        run: |
+          gh repo create ARUM-MED-SOURCE/${{ inputs.repository_name }}-${{ inputs.repository_suffix }} --public --add-readme
