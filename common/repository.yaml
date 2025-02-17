@@ -44,7 +44,7 @@ jobs:
           template_branch: "main"
           template_path: ".github/workflows/create-repository.yaml"
           template_ref: "v1"
-          template_token: ${{ secrets.GITHUB_TOKEN }}
+          template_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           template_overwrite: true
           template_branch_create: true
 
